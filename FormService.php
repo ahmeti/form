@@ -24,6 +24,18 @@ class FormService
         'form-type' => 'ajax'
     ];
 
+    public function __construct()
+    {
+        $this->attrs['class'] = config('form.class');
+        $this->attrs['onkeypress'] = config('form.onkeypress');
+
+        $this->attrs['accept'] = config('form.accept');
+        $this->attrs['autocomplete'] = config('form.autocomplete');
+        $this->attrs['enctype'] = config('form.enctype');
+        $this->attrs['method'] = config('form.method');
+        $this->attrs['target'] = config('form.target');
+    }
+
     protected function check()
     {
         if( empty($this->attrs['id']) ){
@@ -33,19 +45,11 @@ class FormService
 
     public function id($id = null)
     {
-        return dd(config('form.class'));
-
         if( is_null($id) ){
             return $this->attrs['id'];
         }
 
         $this->attrs['id'] = $id;
-        return $this;
-    }
-
-    public function method($method)
-    {
-        $this->attrs['method'] = $method;
         return $this;
     }
 
@@ -58,6 +62,42 @@ class FormService
     public function addClass($class)
     {
         $this->attrs['class'] = trim((string)$this->attrs['class'].' '.$class);
+        return $this;
+    }
+
+    public function accept($accept)
+    {
+        $this->attrs['accept'] = $accept;
+        return $this;
+    }
+
+    public function action($action)
+    {
+        $this->attrs['action'] = $action;
+        return $this;
+    }
+
+    public function autocomplete($autocomplete)
+    {
+        $this->attrs['autocomplete'] = $autocomplete;
+        return $this;
+    }
+
+    public function enctype($enctype)
+    {
+        $this->attrs['enctype'] = $enctype;
+        return $this;
+    }
+
+    public function method($method)
+    {
+        $this->attrs['method'] = $method;
+        return $this;
+    }
+
+    public function target($target)
+    {
+        $this->attrs['target'] = $target;
         return $this;
     }
 
