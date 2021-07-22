@@ -15,4 +15,9 @@ return [
         'onkeypress' => 'App.stopEnterSubmitting(window.event)',
     ],
 
+    'input_text' => [
+        'autocomplete' => 'off',
+        'class' => 'form-control input-sm',
+    ]
+
 ];
