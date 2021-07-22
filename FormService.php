@@ -13,7 +13,6 @@ class FormService
         $this->attrs = [
             'id' => uniqid(),
 
-            'accept' => config('form.form.accept'),
             'action' => config('form.form.action'),
             'autocomplete' => config('form.form.autocomplete'),
             'class' => config('form.form.class'),
@@ -30,12 +29,6 @@ class FormService
     public function id($id)
     {
         $this->attrs['id'] = $id;
-        return $this;
-    }
-
-    public function accept($accept)
-    {
-        $this->attrs['accept'] = $accept;
         return $this;
     }
 
@@ -83,14 +76,14 @@ class FormService
 
     public function open()
     {
-        $items = [];
+        $html = '';
         foreach ($this->attrs as $key => $value){
             if( ! is_null($value) ){
-                $items []= $key.'="'.$value.'"';
+                $html .= $key.'="'.$value.'"';
             }
         }
 
-        return new HtmlString('<form '.implode(' ', $items).'>');
+        return new HtmlString('<form '.$html.'>');
     }
 
     public function close()
