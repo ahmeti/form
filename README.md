@@ -5,7 +5,7 @@
 composer require ahmeti/form
 ```
 
-## 2. How to Use
+## 2. Form Open & Close
 ```php
 {{ Form::open() }}
 
@@ -28,4 +28,23 @@ composer require ahmeti/form
 // ...
 
 {{ Form::close() }}
+```
+
+## 2. Input Text
+```php
+{{ Form::text()
+    ->id('user-form-input-text-id')
+    ->autocomplete('on')
+    ->class('input-text-class')
+    ->addClass('user-input-text')
+    ->disabled(false)
+    ->maxlength(100)
+    ->max(100) /* Shorthand */
+    ->name('user_name')
+    ->placeholder('Please write your name')
+    ->ph('Please write your name...') /* Shorthand */
+    ->readonly(false)
+    ->style('min-width:100px')
+    ->value('Joe Doe')
+    ->get() }}
 ```
