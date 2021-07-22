@@ -12,7 +12,6 @@ class FormService
     {
         $this->attrs = [
             'id' => uniqid(),
-
             'action' => config('form.form.action'),
             'autocomplete' => config('form.form.autocomplete'),
             'class' => config('form.form.class'),
@@ -52,7 +51,7 @@ class FormService
 
     public function addClass($class)
     {
-        $this->attrs['class'] = trim((string)$this->attrs['class'].' '.$class);
+        $this->attrs['class'] = trim($this->attrs['class'].' '.$class);
         return $this;
     }
 
@@ -89,5 +88,11 @@ class FormService
     public function close()
     {
         return new HtmlString('</form>');
+    }
+
+
+    public function text()
+    {
+        return new InputText();
     }
 }
