@@ -3,14 +3,12 @@
     "description": "The Laravel Form Package",
     "license": "MIT",
     "homepage": "https://ahmetimamoglu.com.tr",
-    "authors": [
-        {
-            "name": "Ahmet Imamoglu",
-            "email": "ahmet363@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "Ahmet Imamoglu",
+        "email": "me@ahmetimamoglu.com.tr"
+    }],
     "require": {
-        "php": "^7.3",
+        "php": ">=7.0.0",
         "laravel/framework": ">=5.5.0"
     },
     "autoload": {
