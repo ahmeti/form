@@ -6,62 +6,30 @@ use Illuminate\Support\HtmlString;
 
 class FormService
 {
-    # HTML5 Attributes
-    public $attrs = [
-        'id' => null,
-        'class' => null,
-        'onkeypress' => null, # App.stopEnterSubmitting(window.event)
-
-        'accept' => null,
-        'action' => null,
-        'autocomplete' => null,
-        'enctype' => null,
-        'method' => 'GET',
-        'target' => null,
-    ];
-
-    public $dataAttrs = [
-        'form-type' => 'ajax'
-    ];
+    protected $attrs = [];
 
     public function __construct()
     {
-        $this->attrs['class'] = config('form.class');
-        $this->attrs['onkeypress'] = config('form.onkeypress');
+        $this->attrs = [
+            'id' => uniqid(),
 
-        $this->attrs['accept'] = config('form.accept');
-        $this->attrs['autocomplete'] = config('form.autocomplete');
-        $this->attrs['enctype'] = config('form.enctype');
-        $this->attrs['method'] = config('form.method');
-        $this->attrs['target'] = config('form.target');
+            'accept' => config('form.form.accept'),
+            'action' => config('form.form.action'),
+            'autocomplete' => config('form.form.autocomplete'),
+            'class' => config('form.form.class'),
+            'enctype' => config('form.form.enctype'),
+            'method' => config('form.form.method'),
+            'target' => config('form.form.target'),
+
+            'data-form-type' => config('form.form.data_form_type'),
+
+            'onkeypress' => config('form.form.onkeypress'),
+        ];
     }
 
-    protected function check()
+    public function id($id)
     {
-        if( empty($this->attrs['id']) ){
-            $this->attrs['id'] = uniqid();
-        }
-    }
-
-    public function id($id = null)
-    {
-        if( is_null($id) ){
-            return $this->attrs['id'];
-        }
-
         $this->attrs['id'] = $id;
-        return $this;
-    }
-
-    public function setClass($class)
-    {
-        $this->attrs['class'] = $class;
-        return $this;
-    }
-
-    public function addClass($class)
-    {
-        $this->attrs['class'] = trim((string)$this->attrs['class'].' '.$class);
         return $this;
     }
 
@@ -80,6 +48,18 @@ class FormService
     public function autocomplete($autocomplete)
     {
         $this->attrs['autocomplete'] = $autocomplete;
+        return $this;
+    }
+
+    public function class($class)
+    {
+        $this->attrs['class'] = $class;
+        return $this;
+    }
+
+    public function addClass($class)
+    {
+        $this->attrs['class'] = trim((string)$this->attrs['class'].' '.$class);
         return $this;
     }
 
@@ -103,19 +83,10 @@ class FormService
 
     public function open()
     {
-        $this->check();
-
         $items = [];
-
         foreach ($this->attrs as $key => $value){
             if( ! is_null($value) ){
                 $items []= $key.'="'.$value.'"';
-            }
-        }
-
-        foreach ($this->dataAttrs as $key => $value){
-            if( ! is_null($value) ){
-                $items []= 'data-'.$key.'="'.$value.'"';
             }
         }
 
@@ -124,8 +95,6 @@ class FormService
 
     public function close()
     {
-        $el = '</form>';
-
-        return new HtmlString($el);
+        return new HtmlString('</form>');
     }
 }
