@@ -3,7 +3,6 @@
 return [
 
     'form' => [
-        'accept' => null,
         'action' => null,
         'autocomplete' => 'off',
         'class' => null,
