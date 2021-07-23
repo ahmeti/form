@@ -12,12 +12,12 @@ class FormService
     {
         $this->attrs = [
             'id' => uniqid(),
-            'action' => config('form.form.action'),
+            'action' => null,
             'autocomplete' => config('form.form.autocomplete'),
             'class' => config('form.form.class'),
             'enctype' => config('form.form.enctype'),
             'method' => config('form.form.method'),
-            'target' => config('form.form.target'),
+            'target' => null,
 
             'data-form-type' => config('form.form.data_form_type'),
 
