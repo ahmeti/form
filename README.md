@@ -46,5 +46,12 @@ composer require ahmeti/form
     ->readonly(false)
     ->style('min-width:100px')
     ->value('Joe Doe')
+    
+    ->groupClass('group-class-test')
+    ->groupStyle('color:red')
+    ->label('User Name')
+    ->labelTitle('User Name Title')
+    ->description('Please write your name')
+    ->desc('Please write your name..') /* Shorthand */
     ->get() }}
 ```
